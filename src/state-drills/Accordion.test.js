@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import { render } from '@testing-library/react';
 
 import Accordion from './Accordion';
 
@@ -22,13 +20,8 @@ describe(`Accordion Component`, () => {
     }
   ];
 
-  it('renders without errors', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Accordion sections={data} />, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
 
-  it.skip('renders empty li given no sections', () => {
+  it('renders empty li given no sections', () => {
     const wrapper = shallow(<Accordion />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -37,4 +30,18 @@ describe(`Accordion Component`, () => {
     const wrapper = shallow(<Accordion sections={data} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+  it('component opens a clicked section', () => {
+    const wrapper = shallow(<Accordion sections={data} />);
+    wrapper.find('button').at(1).simulate('click');
+    expect(toJson(wrapper)).toMatchSnapshot();
+  })
+
+  it('component only opens the last section when multiple sections have been clicked', () => {
+    const wrapper = shallow(<Accordion sections={data} />);
+    wrapper.find('button').at(0).simulate('click');
+    wrapper.find('button').at(1).simulate('click');
+    expect(toJson(wrapper)).toMatchSnapshot();
+  })
+
 })
