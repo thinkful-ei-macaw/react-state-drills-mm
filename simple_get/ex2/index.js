@@ -24,7 +24,6 @@ function watchForm() {
     //console.log(value);
     for(let i = 0; i < value; i++) {
       getDogImage();
-
     }
   });
 }
