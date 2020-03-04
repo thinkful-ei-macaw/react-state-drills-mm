@@ -23,9 +23,9 @@ export default class Accordion extends React.Component {
     return (
     <ul>
       {this.props.sections.map(item => (
-        <li>
-        <button onClick={() => this.handleClick(item.title)}>{item.title}</button>
-        {this.state.activeSection === item.title ? (<p>{item.content}</p>) : ''}
+        <li key={item.title}>
+          <button onClick={() => this.handleClick(item.title)}>{item.title}</button>
+          {this.state.activeSection === item.title ? (<p>{item.content}</p>) : ''}
         </li>
       ))}
       </ul>
